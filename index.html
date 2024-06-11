@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Page</title>
+</head>
+<body>
+    <h1>Please Enter the Password</h1>
+    <input type="password" id="password" placeholder="Enter password">
+    <button onclick="checkPassword()">Submit</button>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById('password').value;
+            if (password === '218') { // Replace '218' with your actual password
+                window.location.href = 'correct_password.html'; // Redirect to the correct page
+            } else {
+                alert('Incorrect password. Check The Counter On The Right Of The Door');
+            }
+        }
+    </script>
+</body>
+</html>
