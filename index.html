@@ -1,24 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Protected Page</title>
+    <title>Password Entry</title>
 </head>
 <body>
-    <h1>Please Enter the Password</h1>
-    <input type="password" id="password" placeholder="Enter password">
-    <button onclick="checkPassword()">Submit</button>
+    <form id="passwordForm">
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
-        function checkPassword() {
-            var password = document.getElementById('password').value;
-            if (password === '218') { // Replace '218' with your actual password
-                window.location.href = 'correct_password.html'; // Redirect to the correct page
-            } else {
-                alert('Incorrect password. Check The Counter On The Right Of The Door');
-            }
-        }
+        document.getElementById('passwordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const correctPassword = '218';
+
+            const data = {
+                passwordCorrect: password === correctPassword
+            };
+
+            fetch('https://ziadmulticraft-github-io.onrender.com/webhook', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (response.ok) {
+                    alert('Password submitted');
+                } else {
+                    alert('Error submitting password');
+                }
+            });
+        });
     </script>
 </body>
 </html>
