@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Count</title>
+</head>
+<body>
+    <h1>Correct Password Entries: <span id="count">0</span></h1>
+
+    <script>
+        function fetchCount() {
+            fetch('https://ziadmulticraft-github-io.onrender.com/count') // Replace with your webhook server URL
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('count').innerText = data.count;
+                });
+        }
+
+        // Fetch count every 5 seconds
+        setInterval(fetchCount, 5000);
+        fetchCount();
+    </script>
+</body>
+</html>
